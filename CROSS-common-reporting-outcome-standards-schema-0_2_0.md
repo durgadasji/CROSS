@@ -1,7 +1,7 @@
 ---
 title: CROSS - Common Reporting Outcome Standards Schema
-version: 0.2.0
-date: 2026-05-14
+version: 0.2.4
+date: 2026-05-15
 license: CC0
 status: Working draft. Supersedes version 0.1.0. Incorporates comparative research across thirteen grant programs spanning web3, open source, and institutional funding contexts.
 related_documents:
@@ -25,7 +25,7 @@ implementation_documents:
 
 # CROSS: Common Reporting Outcome Standards Schema
 
-Version 0.2.0 | 2026-05-14 | CC0
+Version 0.2.4 | 2026-05-15 | CC0
 
 ---
 
