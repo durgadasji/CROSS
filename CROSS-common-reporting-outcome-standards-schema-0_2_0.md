@@ -91,6 +91,8 @@ The following dimensions are specified in this standard. Additional dimensions m
 
 **Open source and intellectual property.** Triggered by: whether the funded work produces code, data, research, or other artifacts, and what the public goods claim rests on. For work claiming a public goods benefit through open access to its outputs, those outputs must be demonstrably open at the time of reporting, not only at the time of application.
 
+Where the funded work produces research outputs, models, datasets, or novel technical artifacts for which intellectual property rights are material, the applicant must submit an IP ownership declaration specifying: who holds rights in the outputs, under what terms those rights are held, and what the public's rights of access and use are. The declaration must be specific enough to answer whether a third party could use, fork, or build upon the outputs without seeking permission from any rights holder. An applicant who holds exclusive rights over outputs claimed as public goods must reconcile those rights with the public goods claim in the additionality declaration (Part VI-A). For programs funding decentralized science, AI model development, or research producing novel patentable outputs, the Grant Configurator activates the IP ownership declaration as an explicit gate criterion rather than a supplementary disclosure.
+
 **Beneficiary engagement and beneficiary validation.** Triggered by: whether the application claims to address a problem experienced by a defined population. In change-obligation rounds, the claimed FROM state must be validated by parties outside the applicant's control. In build-obligation rounds, the claimed need for the deliverable must be validated by at least one party outside the applicant's organization who would use or benefit from it.
 
 **Privacy and data sensitivity.** Triggered by: whether the beneficiary population faces elevated risk from standard outcome measurement. For interventions where standard measurement would compromise the safety of the beneficiary population, privacy-preserving measurement methodologies are required in lieu of standard analytics. The accommodation is not an exemption from obligation; it specifies which obligation mechanisms are appropriate to the context.
@@ -145,6 +147,21 @@ Gate configurations are not retrospective. A funder may not apply a higher evide
 
 *Continuation specification gate.* What a project must demonstrate to advance from one stage to the next in a multi-stage program, or to receive funding from the same funder in a subsequent round. This gate sits above the individual round and is configured at the program level, not the round level. It is the primary mechanism for escalating evidentiary pressure as a project matures. Not all programs require a continuation gate; it is activated by funder configuration. Where configured, the continuation gate must be published before any round in the program opens, so applicants understand the progression requirements before committing to the program.
 
+**Pre-Award Indicator Confirmation**
+
+After the entry specification gate is passed and before first disbursement, funders may configure a pre-award indicator confirmation window. During this window, the funder reviews the indicator specification submitted at entry (Part V) and issues a written confirmation, a revision request, or an escalation to structured clarification. The window must be time-bounded and must not delay first disbursement beyond the published window period.
+
+The purpose of the pre-award confirmation window is to surface indicator specification problems before work begins, when revision is costless, rather than at the completion gate, when it becomes a dispute about whether the work satisfied obligations the funder considers binding. A grantee who receives written confirmation of their indicator specification before work begins has an explicit record of what the funder accepted as sufficient. A funder who confirms an indicator specification and subsequently claims it was insufficient at the completion gate must document the specific discrepancy and the basis on which the confirmed specification was found wanting.
+
+Where a pre-award confirmation window is configured, the following apply:
+
+- The funder must respond within the published window period. Silence at the window's close constitutes confirmation; no additional notification is required.
+- Written confirmation or revision request is the required output. Verbal or informal communication does not satisfy this requirement.
+- Grantee revisions requested during the window do not affect funding status. Revision requests issued after the window closes are governed by the mid-grant amendment procedure.
+- The confirmed indicator specification governs all subsequent gate assessments unless the grant is formally amended.
+
+Where no pre-award confirmation window is configured, the indicator specification submitted at the entry gate governs all subsequent gate assessments, and the funder may not impose requirements at the completion gate that were not visible in the published gate configuration.
+
 **Evidence scope.** The scope of evidence accepted at any gate falls into one of four levels, in ascending order of rigor.
 
 Output evidence: the specified deliverable exists, or a measurable artifact demonstrates progress toward it. Applicable to build-obligation gates. A shipped feature, a deployed contract, a published dataset, a recorded demonstration meeting the specified completion criteria are all output evidence.
@@ -156,6 +173,23 @@ Outcome evidence: a measurable change has occurred in the specified population, 
 Impact evidence: a credible causal link is established between the funded work and the measured change, through methodology sufficient to support causal inference. Not required in most public goods grant contexts, but may be configured as a continuation gate requirement for large-scale programs with institutional funders.
 
 For on-chain contract and protocol deliverables, output evidence includes not only the existence of the deployed contract but also the existence of a verification artifact demonstrating that the contract satisfies the specified invariant set. Where the obligation object is a behavioral property rather than a discrete output, the verification artifact is part of the output evidence, not only supporting documentation.
+
+**Outcome Verification with Counterfactual Reference**
+
+The default completion verification gate for change-obligation rounds asks whether a measurable change occurred against the baseline established at entry. This is a completion gate: it asks whether the indicator moved in the documented direction by the documented amount. It is not a causal gate: it does not ask whether the intervention produced the change rather than confounding factors.
+
+For programs where causal attribution is material to the funding decision, funders may configure the completion verification gate or the continuation specification gate at counterfactual reference level. A gate configured at counterfactual reference level asks: did the funded intervention produce a change in the specified condition above the level expected in the absence of the intervention?
+
+A grantee submitting evidence at counterfactual reference level must include all of the following as required contract elements:
+
+- **Counterfactual baseline.** A documented estimate of what the indicator value would have been during the grant period without the intervention, derived from one of: historical trend extrapolation from pre-intervention data, a matched comparison group not exposed to the intervention, or a modeled counterfactual with stated assumptions and sensitivity ranges.
+- **Attribution argument.** A written account of why the observed change is attributable to the intervention rather than to confounding factors, naming the main alternative explanations and explaining why they are insufficient to account for the observed change.
+- **Comparison period or group.** A defined period or population that serves as the counterfactual reference, described specifically enough that an independent reviewer can assess whether it is an appropriate comparison for the intervention context.
+- **Independent attestation.** Confirmation from a party outside the grantee organization that the counterfactual method and comparison group are reasonable given the intervention context and available data.
+
+Where a comparison group cannot be defined because the intervention affects an entire ecosystem or operates at a protocol level with universal effects, the grantee must document why a comparison group approach is not feasible and provide a modeled counterfactual with stated assumptions. Absence of a comparison group is not itself a gate failure; absence of a counterfactual estimate and attribution argument is.
+
+Counterfactual reference requirements apply only when explicitly configured by the funder in the gate configuration and declared in the infrastructure declaration. Funders activating counterfactual reference requirements must specify the acceptable counterfactual methods before the round opens. Default gate configurations do not require counterfactual attribution. The requirement is not implied by selecting outcome evidence scope; it is an additional layer that must be activated explicitly.
 
 **Evidence strength.** The verification mechanism at any gate falls into one of four levels, in ascending order of rigor.
 
@@ -253,6 +287,15 @@ Indicators that rely solely on applicant-controlled test suites or private monit
 **Baseline (FROM state).** For change-obligation indicators: the documented state of the condition before the intervention begins, with a named data source. Required. For build-obligation indicators: the documented current absence or inadequacy of the deliverable, with named evidence of the gap it addresses. Required where the funder has activated the beneficiary engagement dimension. For retroactive indicators: the documented state of the contribution at the time the award period begins.
 
 **Target (TO state).** The expected state of the indicator at the end of the grant period or stage. For change-obligation indicators: expressed in the same units as the baseline. For build-obligation indicators: expressed as the completion criteria the deliverable must meet. For retroactive indicators: may describe a forward commitment the awardee makes as a condition of the award, if configured by the funder.
+
+**Sustainability and transition plan.** Optional field, activated by funder configuration. Required for grants above a funder-defined size threshold or grants producing infrastructure, software, or services with ongoing operational requirements beyond the grant period. The sustainability and transition plan specifies:
+
+- What happens to the funded work at the end of the grant period: who maintains it, under what conditions it remains publicly accessible, and what operational costs are required to sustain it.
+- How those costs will be covered after the grant ends, naming the expected source (self-funding, successor grant, revenue, community contribution, or protocol treasury) with enough specificity that a reviewer can assess plausibility.
+- Where the funded work will be handed to another organization, community, or protocol: the identity of the receiving party and the conditions of the transition.
+- Where the funded work reaches a defined end state after which maintenance is not required: a specification of that end state and the conditions under which it will be declared reached.
+
+A grant producing infrastructure with ongoing operational requirements that provides no sustainability plan has not addressed whether the public benefit it claims will persist beyond the grant period. The sustainability and transition plan is not a guarantee; it is a documented position on continuation that the funder may use in subsequent continuation gate assessments.
 
 ---
 
@@ -531,6 +574,7 @@ Where a funder obligation violation has materially affected the status of a gran
 
 | Version | Date | Summary |
 |---|---|---|
+| 0.2.3 | 2026-05-15 | Four structural additions. (1) Part II: extended the open source and intellectual property dimension with an IP ownership declaration requirement for research, model, and novel artifact outputs; Grant Configurator activation note added. (2) Part IV: added Pre-Award Indicator Confirmation Window subsection specifying the optional post-entry, pre-disbursement review of indicator specifications, including silence-as-confirmation rule and governing scope. (3) Part IV: added Outcome Verification with Counterfactual Reference subsection specifying the four required contract elements (counterfactual baseline, attribution argument, comparison period or group, independent attestation) for gates configured at counterfactual reference level; distinguished from default outcome evidence scope. (4) Part V: added Sustainability and Transition Plan as a funder-activated optional field specifying post-grant continuation conditions for infrastructure-producing grants. |
 | 0.2.2 | 2026-05-15 | Added Part VI-A: Scope Attribution and Outcome Credit, specifying additionality declaration and outcome credit attribution requirements triggered by concurrent funding disclosure. Added cross-reference in the Scope section. Added Grant Configurator note in Part IX specifying how Part VI-A parameters are recorded and published. Added Part XI: Funder Obligations and Redress, specifying minimum mechanisms by which funders are held to their published gate configurations and how applicants may seek recourse. Added cross-references in Scope and Implementation Architecture. External Standard References: new subsection in Part IV specifying the mechanism by which any gate may reference an external standard by URL with a version anchor, including support for machine-readable approved lists. |
 | 0.2.1 | 2026-05-15 | On-chain execution and verification instruments: added subsection to Part V specifying indicator requirements for smart contract and protocol deliverables, including invariant specification, verification method, verification artifact, and failure surface fields. Added two clarifying paragraphs to Part IV on verification artifacts as output evidence and on independent review for contract-centric interventions. |
 | 0.2.0 | 2026-05-14 | Major structural revision. Introduced three accountability modes (build, change, retroactive). Theory of Build correctly scoped as a failure mode in change-accountability rounds only. Replaced Level 1 / Level 2 binary with four-gate architecture (entry specification, progress verification, completion verification, continuation specification). Added evidence scope and evidence strength taxonomies. Added program-level continuation gate. Replaced constrained data type list with open measurement form and evidence classification. Added Reviewers Dashboard to implementation architecture. Added runbook library concept. Added funder maturation tracking note. Resolved several v0.1.0 open questions. |
